@@ -3,7 +3,7 @@ package textrpg.game;
  * 
  * HollowKnight
  */
-public class HollowKnight extends Enemy implements Combat{
+public class HollowKnight extends Enemy{
     public HollowKnight(String name){
         super(name, new Stats(45, new Power("Void Surge", 6, 2.5)));
     }

@@ -3,7 +3,7 @@ package textrpg.game;
  * 
  * Thief
  */
-public class Thief extends Enemy implements Combat{
+public class Thief extends Enemy {
     private final int attackInterval = 8; // knife interval
     private long lastAttack =0;
 
@@ -11,7 +11,7 @@ public class Thief extends Enemy implements Combat{
         super(name, new Stats(12, new Weapon("Wood Knife", 10,2,2)));
     }
 
-    @Override
+    @Override 
     public void attack(Player player){
         int playerHp = player.getPlayerStats().getHpLevel();
         if(this.getEnemStats().getHpLevel() <= 0 || playerHp <= 0) return;

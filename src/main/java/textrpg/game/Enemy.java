@@ -4,7 +4,7 @@ package textrpg.game;
  * Enemy Class
  * Subclasses: Thief, Witch, TreeTroll, and HollowKnight
  */
-public class Enemy {
+public abstract class Enemy {
     private String name;
     private Stats enemyStats;
 
@@ -19,6 +19,8 @@ public class Enemy {
     //gettters
     public String getEnemyName(){return this.name;}
     public Stats getEnemStats(){return this.enemyStats;}
+
+    public abstract void attack(Player player);
 
     protected int handleWeaponAttack(Usable weapon){
         if(!weapon.canUse()){

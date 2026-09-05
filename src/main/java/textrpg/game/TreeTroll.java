@@ -3,7 +3,7 @@ package textrpg.game;
  * 
  * TreeTroll
  */
-public class TreeTroll extends Enemy implements Combat{
+public class TreeTroll extends Enemy{
     public TreeTroll(String name){
         super(name, new Stats(35, new Power("Earthpike Surge", 8, 7)));
     }
