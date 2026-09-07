@@ -4,14 +4,14 @@ import java.util.Scanner;
 import textrpg.game.enums.TextColors;
 
 public class Game {
-    private Scanner scanner;
+    private final Scanner scanner;
     private Player player;
-    private Items[] store = {
+    private final Items[] store = {
         new Items("Health Potion", 10, 10),
-        new Items("Heal Weapon", 20, 0),
-        new Items("Upgrade Weapon",15, 0),
-        new Items("Upgrade Power Strength", 20, 0),
-        new Items("Upgrade Power Use", 25, 0)
+        new Items("Heal Weapon", 20, 15),
+        new Items("Upgrade Weapon",15, 6),
+        new Items("Upgrade Power Strength", 20, 8),
+        new Items("Upgrade Power Use", 25, 3)
     };
 
     public Game(Scanner scanner){
