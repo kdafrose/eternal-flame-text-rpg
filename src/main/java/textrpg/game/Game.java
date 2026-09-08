@@ -3,6 +3,11 @@ import java.util.Scanner;
 
 import textrpg.game.enums.TextColors;
 
+/**
+ * This file is for initializing, clean up, and inventory logic.
+ * The functions that users can do anytime of the game except for the combat sequence.
+ * Game
+ */
 public class Game {
     private final Scanner scanner;
     private Player player;
@@ -19,7 +24,7 @@ public class Game {
         this.scanner = scanner;
     }
 
-    public void initializeGame(){
+    public Player initializeGame(){
         System.out.println( TextColors.PURPLE +
             "\t\t\t#####################################################\n" +
             "\t\t\t#                                                   #\n" +
@@ -34,15 +39,23 @@ public class Game {
         System.out.print(TextColors.YELLOW + "Enter your Players name: " + TextColors.RESET);
         String playerName = scanner.nextLine();
         this.player = new Player(playerName);
+        return this.player;
     }
 
     public void endGame(){
         scanner.close();
     }
 
-    public void runMissions(){
-        MissionOne missionOne = new MissionOne(this.player);
-        missionOne.PlayMissionOne(this.scanner);
+    public boolean playerDeadHandler(Scanner scanner) {
+        System.out.println(player.getName() + " has died... Retry or exit?");
+        System.out.println("TYPE: retry | exit");
+
+        while (true) {
+            String choice = scanner.nextLine().trim().toLowerCase();
+            if (choice.equals("retry")) return true;
+            if (choice.equals("exit"))  return false;
+            System.out.println("Invalid input. Type retry or exit:");
+        }
     }
 
      // POTIONS STORE
@@ -77,7 +90,7 @@ public class Game {
 
             // handle exit first
             if (userChoice.equals("0")) {
-                System.out.println(TextColors.PURPLE + "\nOPHELIA: \"Safe travels, brave one!\"" + TextColors.RESET);
+                System.out.println(TextColors.PURPLE + "\nOPHELIA: \"Okay! Our adventure awaits!\"" + TextColors.RESET);
                 shopping = false;
                 continue;
             }
@@ -111,5 +124,16 @@ public class Game {
         }
     }
 
+    // Inventory logic
+    public void viewInventory(){
+        Items[] inventory = player.getPlayersInventory().getInventory();
+        StringBuilder inventoryString = new StringBuilder();
+        for(int i =0; i< inventory.length; i++ ){
+            String s = "[" + i + "] " + inventory[i].getName() + "\n";
+            inventoryString.append(s);
+        }
+
+        System.out.println(this.player.getName() + "Inventory: \n" + inventoryString);
+    }
     
 }

@@ -8,33 +8,42 @@ import textrpg.game.enums.TextColors;
 
 public interface Gameplay {
     // COMBAT
-    public default void playCombat(Player player, Enemy enemy){
-        Scanner input = new Scanner(System.in);
-  
-        while(!isPlayerDead(player) && !isEnemyDefeated(enemy)){
-            System.out.println("Commands: KICK, PUNCH, POWER, WEAPON");
-            String attackString = input.nextLine().toUpperCase();
-            player.attack(attackString);
+    public default boolean playCombat(Player player, Enemy enemy, Scanner input){
+        try (Scanner scanner = input) {
+            while(!isPlayerDead(player) && !isEnemyDefeated(enemy)){
+                System.out.println(TextColors.YELLOW +"Commands: KICK, PUNCH, POWER, WEAPON");
+                String attackString = scanner.nextLine().toUpperCase();
+                player.attack(attackString);
 
-            if(!isEnemyDefeated(enemy)){
-                enemy.attack(player);
+                if(!isEnemyDefeated(enemy)){
+                    enemy.attack(player);
+                }
             }
-        }
 
-        if(isPlayerDead(player)){
-            System.out.println(player.getName() + "has died!");
-        } else if(isEnemyDefeated(enemy)){
-            System.out.println(enemy.getEnemyName() + "has been defeated!");
+            if(isPlayerDead(player)){
+                System.out.println(TextColors.RED + player.getName() + "has died!");
+                return false;
+            } 
+            
+            System.out.println(TextColors.BLUE + enemy.getEnemyName() + "has been defeated!");
+            return true;
         }
-
-        input.close();
     }
 
+    // Loot Logic
     public boolean lootSpaceArea(Scanner scanner);
 
+    default void playerPickupWeapon(Weapon weapon, Player player){
+        player.getPlayerStats().setWeapon(weapon);
+    }
+    default void playerPickupGold(Player player, int lootGold){
+        int currentGold = player.getMoney();
+        player.setMoney(lootGold + currentGold);
+    }
+
+    // Helper functions
     default void displayStory(String filename, Scanner userInput) {
         StringBuilder block = new StringBuilder();
-        //InputStream is = getClass().getResourceAsStream("/" + filename);
 
         try (BufferedReader br = new BufferedReader(new FileReader(filename))){
             String line;
@@ -44,7 +53,7 @@ public interface Gameplay {
                     // Print the collected block, then pause
                     if (!block.isEmpty()) {
                         System.out.println(TextColors.PURPLE + block.toString().trim() + TextColors.RESET);
-                        System.out.println(TextColors.YELLOW + "\nPress Enter to continue..." + TextColors.RESET);
+                        System.out.print(TextColors.YELLOW + "\nPress Enter to continue..." + TextColors.RESET);
                         userInput.nextLine();
                         block.setLength(0); // clear for next block
                     }
@@ -70,8 +79,4 @@ public interface Gameplay {
     default boolean isEnemyDefeated(Enemy enemy){
         return enemy.getEnemStats().getHpLevel() <= 0;
     }
-    // END OF COMBAT
-
-    // INVENTORY
-
 }
