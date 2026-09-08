@@ -9,25 +9,31 @@ import textrpg.game.enums.TextColors;
 public interface Gameplay {
     // COMBAT
     public default boolean playCombat(Player player, Enemy enemy, Scanner input){
-        try (Scanner scanner = input) {
-            while(!isPlayerDead(player) && !isEnemyDefeated(enemy)){
-                System.out.println(TextColors.YELLOW +"Commands: KICK, PUNCH, POWER, WEAPON");
-                String attackString = scanner.nextLine().toUpperCase();
-                player.attack(attackString);
+    
+        while(!isPlayerDead(player) && !isEnemyDefeated(enemy)){
+            
+            if(!isEnemyDefeated(enemy)){
+                enemy.attack(player);
+            }
+            System.out.println(TextColors.YELLOW +"Commands: KICK, PUNCH, POWER, WEAPON");
+            String attackString = input.nextLine().toUpperCase();
+            int damage = player.attack(attackString);
+            enemy.getEnemStats().setHpLevel(enemy.getEnemStats().getHpLevel() - damage);
 
-                if(!isEnemyDefeated(enemy)){
-                    enemy.attack(player);
-                }
+            if(!isEnemyDefeated(enemy)){
+                enemy.attack(player);
             }
 
-            if(isPlayerDead(player)){
-                System.out.println(TextColors.RED + player.getName() + "has died!");
-                return false;
-            } 
-            
-            System.out.println(TextColors.BLUE + enemy.getEnemyName() + "has been defeated!");
-            return true;
         }
+
+        if(isPlayerDead(player)){
+            System.out.println(TextColors.RED + player.getName() + " has died!\n");
+            return false;
+        } 
+        
+        System.out.println(TextColors.BLUE + enemy.getEnemyName() + " has been defeated!\n");
+        return true;
+        
     }
 
     // Loot Logic
@@ -54,7 +60,9 @@ public interface Gameplay {
                     if (!block.isEmpty()) {
                         System.out.println(TextColors.PURPLE + block.toString().trim() + TextColors.RESET);
                         System.out.print(TextColors.YELLOW + "\nPress Enter to continue..." + TextColors.RESET);
-                        userInput.nextLine();
+
+                        String i = userInput.nextLine().trim();
+                        if(i.equals("skip")) return;
                         block.setLength(0); // clear for next block
                     }
                 } else {

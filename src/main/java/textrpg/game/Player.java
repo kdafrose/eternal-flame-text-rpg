@@ -36,18 +36,30 @@ public class Player{
 
         return switch(lowerCase){
             case "punch" -> {
-                System.out.println("Enemy been punched!");
+                System.out.println("Enemy been punched!\n");
                 yield 1;
             }
             case "kick" -> {
-                System.err.println("Enemy has been kicked!");
+                System.err.println("Enemy has been kicked!\n");
                 yield 1;
             }
-            case "power" -> handleUse(equippedPower);
+            case "power" -> {
+                if(this.playerStats.getPower() == null){
+                    System.out.println(this.name + "does not have any powers.\n");
+                    yield 0;
+                }
+                yield handleUse(equippedPower);
+            }
 
-            case "weapon" -> equippedWeapon.getStrength();
+            case "weapon" -> {
+                if(this.playerStats.getWeapon() == null){
+                    System.out.println(this.name + "does not have a weapon.\n");
+                    yield 0;
+                }
+                yield equippedWeapon.getStrength();
+            }
             default -> {
-                System.err.println("Invalid Attack");
+                System.err.println("Invalid Attack\n");
                 yield 0;
             }
         };

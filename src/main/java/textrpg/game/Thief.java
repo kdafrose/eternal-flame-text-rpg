@@ -1,4 +1,7 @@
 package textrpg.game;
+
+import textrpg.game.enums.TextColors;
+
 /**
  * 
  * Thief
@@ -8,7 +11,7 @@ public class Thief extends Enemy {
     private long lastAttack =0;
 
     public Thief(String name){
-        super(name, new Stats(12, new Weapon("Wood Knife", 10,2,2)));
+        super(name, new Stats(12, new Weapon("Wood Knife", 10,7,2)));
     }
 
     @Override 
@@ -23,6 +26,7 @@ public class Thief extends Enemy {
             int damage = handleWeaponAttack(this.getEnemStats().getWeapon());
             if(damage > 0){
                 player.getPlayerStats().setHpLevel(playerHp - damage);
+                System.out.println( TextColors.RED + player.getName() + " has been slashed!\n" + TextColors.RESET);
                 lastAttack = System.currentTimeMillis();
             }
         }

@@ -12,8 +12,8 @@ public class Main {
         Player player = eternalFlame.initializeGame();
 
         List<Mission> missions = List.<Mission>of(
-            new MissionOne(player),
-            new MissionTwo(player)
+            new MissionOne(player)
+            //new MissionTwo(player)
             // new MissionThree(player),
             // new MissionFour(player),
             // new MissionFive(player)
@@ -26,13 +26,12 @@ public class Main {
             if (!playerAlive) {
                 boolean retry = eternalFlame.playerDeadHandler(scanner);
                 if (!retry) {
-                    eternalFlame.endGame();
                     return;          // exits main / the game method entirely
                 }
                 // retry = i stays the same → replays current mission
-            } else {
-                i++;                 // advance only on success
-            }
+                } else {
+                    i++;                 // advance only on success
+                }
         }
 
         eternalFlame.endGame();

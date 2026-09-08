@@ -1,0 +1,48 @@
+SCENE 3 — THE KINGDOM GATES
+
+Ophelia leads you through the last stretch of cobblestone road. Ahead,
+two massive iron gates loom against the dark sky — the boundary between
+the safety of Aeloria and whatever dangers lie beyond.
+
+The guards posted at the gates nod to Ophelia as you approach. She
+turns to face you, hovering at eye level, her expression serious for
+the first time since you met her.
+
+OPHELIA:
+"This is as far as I go for now. Beyond these gates, you're on your
+own — but I meant what I said back there. I'm never too far."
+
+She pauses, then smiles softly.
+
+OPHELIA:
+"Be brave. The King chose well."
+
+She gives a small wave, then drifts back toward the city.
+
+You face the gates. The guards pull them open with a long, heavy groan of iron.
+
+The road stretches out before you into darkness.
+
+You take your first step beyond the walls of Aeloria—
+
+A figure steps out from the shadows beside the road.
+
+Tall. Cloaked. A jagged scar runs across his jaw. His hand rests on the
+hilt of a blade at his side. He grins.
+
+BANDIT:
+"Well, well. Look at what the castle spat out."
+
+He tilts his head, eyes scanning you up and down.
+
+BANDIT:
+"Word travels fast in these parts, hero. They say the King sent his
+little champion off to fetch the Ember back."
+
+He steps closer, hand tightening on his blade.
+
+BANDIT:
+"I've got a better idea. Hand over your gold and those pretty potions
+of yours... and maybe I'll let you walk away with all your teeth."
+
+He draws his sword.

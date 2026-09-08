@@ -47,8 +47,8 @@ public class Game {
     }
 
     public boolean playerDeadHandler(Scanner scanner) {
-        System.out.println(player.getName() + " has died... Retry or exit?");
-        System.out.println("TYPE: retry | exit");
+        System.out.println(player.getName() + " has died... Retry or exit?" + TextColors.RESET);
+        System.out.println(TextColors.YELLOW +"TYPE: retry | exit");
 
         while (true) {
             String choice = scanner.nextLine().trim().toLowerCase();
@@ -56,6 +56,10 @@ public class Game {
             if (choice.equals("exit"))  return false;
             System.out.println("Invalid input. Type retry or exit:");
         }
+    }
+
+    public void replayCombat(){
+        // TODO: redo enemy and players hp, weapons, and powers
     }
 
      // POTIONS STORE

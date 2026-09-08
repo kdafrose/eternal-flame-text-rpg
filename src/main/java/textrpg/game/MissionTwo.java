@@ -5,7 +5,7 @@ public class MissionTwo implements Mission,Gameplay{
     private final Enemy enemy;
     private final int lootGold;
     private final Player player;
-    private Power lootPower;
+    private final Power lootPower;
 
     public MissionTwo(Player player){
         this.player = player;

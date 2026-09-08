@@ -27,7 +27,7 @@ public class MissionOne implements Mission, Gameplay{
         String part2 = "eternal-flame/src/main/resources/mission_01_part2.txt";
         displayStory(part1, input);
 
-        System.out.println("Ophelia has given you a Health Potion.");
+        System.out.println(TextColors.BLUE + "\nOphelia has given you a Health Potion." + TextColors.RESET);
         player.getPlayersInventory().addItem(new Items("Health Potion", 10, 10));
 
         displayStory(part2, input);
