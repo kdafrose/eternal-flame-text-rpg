@@ -36,9 +36,6 @@ public interface Gameplay {
         
     }
 
-    // Loot Logic
-    public boolean lootSpaceArea(Scanner scanner);
-
     default void playerPickupWeapon(Weapon weapon, Player player){
         player.getPlayerStats().setWeapon(weapon);
     }
@@ -48,6 +45,19 @@ public interface Gameplay {
     }
 
     // Helper functions
+    default void displayDirections(){
+        System.out.println(TextColors.BLUE +
+        "\n#####################################################\n" +
+        "#                                                   #\n" +
+        "#        NORTH                                      #\n" +
+        "#        SOUTH                                      #\n" +
+        "#        EAST                                       #\n" +
+        "#        WEST                                       #\n" +
+        "#                                                   #\n" +
+        "#####################################################" +
+        TextColors.RESET);
+    }
+
     default void displayStory(String filename, Scanner userInput) {
         StringBuilder block = new StringBuilder();
 

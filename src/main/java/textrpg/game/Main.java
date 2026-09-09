@@ -12,8 +12,8 @@ public class Main {
         Player player = eternalFlame.initializeGame();
 
         List<Mission> missions = List.<Mission>of(
-            new MissionOne(player)
-            //new MissionTwo(player)
+            new MissionOne(player),
+            new MissionTwo(player)
             // new MissionThree(player),
             // new MissionFour(player),
             // new MissionFive(player)
@@ -22,16 +22,23 @@ public class Main {
         int i = 0;
         while (i < missions.size()) {
             boolean playerAlive = missions.get(i).playMission(scanner);
-
             if (!playerAlive) {
-                boolean retry = eternalFlame.playerDeadHandler(scanner);
-                if (!retry) {
-                    return;          // exits main / the game method entirely
-                }
+                //boolean retry = eternalFlame.playerDeadHandler(scanner);
+               // if (!retry) {
+                    //return;          // exits main / the game method entirely
+                //}
                 // retry = i stays the same → replays current mission
-                } else {
-                    i++;                 // advance only on success
-                }
+                //} else {
+                    //i++;                 // advance only on success
+                eternalFlame.gameOverScreen();
+                return;
+            }
+            eternalFlame.displayCombatVictory();
+            boolean stillLooting = true;
+            while(stillLooting){
+                stillLooting = missions.get(i).lootSpaceArea(scanner);
+            }
+            i++;
         }
 
         eternalFlame.endGame();

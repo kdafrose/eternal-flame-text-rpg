@@ -42,25 +42,46 @@ public class Game {
         return this.player;
     }
 
+    public void gameOverScreen(){
+        System.out.println(TextColors.BOLD + "You have failed to save the Kingdom.." + TextColors.RESET);
+    }
+
     public void endGame(){
         scanner.close();
     }
 
-    public boolean playerDeadHandler(Scanner scanner) {
-        System.out.println(player.getName() + " has died... Retry or exit?" + TextColors.RESET);
-        System.out.println(TextColors.YELLOW +"TYPE: retry | exit");
+    public void displayCombatVictory(){
+        System.out.println(TextColors.YELLOW +
+        "\nt#####################################################\n" +
+        "#                  ENEMY DEFEATED!                  #\n" +
+        "#####################################################" +
+        TextColors.RESET);
 
-        while (true) {
-            String choice = scanner.nextLine().trim().toLowerCase();
-            if (choice.equals("retry")) return true;
-            if (choice.equals("exit"))  return false;
-            System.out.println("Invalid input. Type retry or exit:");
-        }
+    System.out.println(TextColors.PURPLE +
+        "\nCongratulations! You have defeated the enemy!" +
+        "\n\nAs the dust settles, you notice something glimmering on the ground." +
+        "\nThe enemy has dropped some loot — make sure to pick it up!" +
+        "\n\nYou look around and sense there may be more to discover in the area." +
+        TextColors.RESET);
     }
 
-    public void replayCombat(){
+    // public boolean playerDeadHandler(Scanner scanner) {
+    //     System.out.println(player.getName() + " has died... Retry or exit?" + TextColors.RESET);
+    //     System.out.println(TextColors.YELLOW +"TYPE: retry | exit");
+
+    //     while (true) {
+    //         String choice = scanner.nextLine().trim().toLowerCase();
+    //         if (choice.equals("retry")) return true;
+    //         if (choice.equals("exit"))  return false;
+    //         System.out.println("Invalid input. Type retry or exit:");
+    //     }
+    // }
+
+    // public void replayCombat(){
         // TODO: redo enemy and players hp, weapons, and powers
-    }
+    //     this.player = new Player(this.player.getName());
+
+    // }
 
      // POTIONS STORE
     public void displayPotionsStore(){

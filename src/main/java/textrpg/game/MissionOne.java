@@ -27,7 +27,7 @@ public class MissionOne implements Mission, Gameplay{
         String part2 = "eternal-flame/src/main/resources/mission_01_part2.txt";
         displayStory(part1, input);
 
-        System.out.println(TextColors.BLUE + "\nOphelia has given you a Health Potion." + TextColors.RESET);
+        System.out.println(TextColors.GREEN + "\nOphelia has given you a Health Potion." + TextColors.RESET);
         player.getPlayersInventory().addItem(new Items("Health Potion", 10, 10));
 
         displayStory(part2, input);
@@ -37,32 +37,33 @@ public class MissionOne implements Mission, Gameplay{
 
     @Override
     public boolean lootSpaceArea(Scanner input) {
-        System.out.println(TextColors.YELLOW + "What do you want to do?" + TextColors.RESET);
+        displayDirections();
+        System.out.println("go NORTH to exit");
+        System.out.println(TextColors.YELLOW + "What do you want to do?\n" + TextColors.RESET);
 
         String userResponse = input.nextLine().toUpperCase(); // .toUpperCase() so "north" works too
-
         return switch (userResponse) {
             case "SOUTH" -> {
                 System.out.println(player.getName() + " has ended up back at the gates.");
-                yield false;
+                yield true;
             }
             case "EAST" -> {
                 playerPickupWeapon(this.lootWeapon, player);
-                System.out.println(this.player.getName() + " picked up a " + this.lootWeapon.getName() + "!");
-                yield false;
+                System.out.println(TextColors.GREEN + this.player.getName() + " picked up a " + this.lootWeapon.getName() + "!");
+                yield true;
             }
             case "WEST" -> {
                 playerPickupGold(player, lootGold);
-                System.out.println(this.player.getName() + " picked up " + this.lootGold + "g!");
-                yield false;
+                System.out.println( TextColors.GREEN + this.player.getName() + " picked up " + this.lootGold + "g!");
+                yield true;
             }
             case "NORTH" -> {
-                System.out.println(TextColors.YELLOW + "Exiting Kingdom..." + TextColors.RESET);
-                yield true;
+                System.out.println(TextColors.YELLOW + "Exiting   ..." + TextColors.RESET);
+                yield false;
             }
             default -> {
                 System.out.println("Invalid direction.");
-                yield false;
+                yield true;
             }
         };
     }
