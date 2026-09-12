@@ -32,11 +32,13 @@ public class Main {
                     //i++;                 // advance only on success
                 eternalFlame.gameOverScreen();
                 return;
-            }
-            eternalFlame.displayCombatVictory();
-            boolean stillLooting = true;
-            while(stillLooting){
-                stillLooting = missions.get(i).lootSpaceArea(scanner);
+            } else {
+                eternalFlame.displayCombatVictory();
+                boolean stillLooting = true;
+                while(stillLooting){
+                    stillLooting = missions.get(i).lootSpaceArea(scanner);
+                }
+                eternalFlame.displayPlayerInventory();
             }
             i++;
         }

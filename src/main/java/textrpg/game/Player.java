@@ -1,5 +1,7 @@
 package textrpg.game;
 
+import textrpg.game.enums.TextColors;
+
 public class Player{
     private String name;
     private int money;
@@ -36,16 +38,16 @@ public class Player{
 
         return switch(lowerCase){
             case "punch" -> {
-                System.out.println("Enemy been punched!\n");
+                System.out.println(TextColors.GREEN + "Enemy been punched!\n");
                 yield 1;
             }
             case "kick" -> {
-                System.err.println("Enemy has been kicked!\n");
+                System.err.println(TextColors.GREEN + "Enemy has been kicked!\n");
                 yield 1;
             }
             case "power" -> {
                 if(this.playerStats.getPower() == null){
-                    System.out.println(this.name + "does not have any powers.\n");
+                    System.out.println(TextColors.RED + this.name + "does not have any powers.\n");
                     yield 0;
                 }
                 yield handleUse(equippedPower);
@@ -53,13 +55,13 @@ public class Player{
 
             case "weapon" -> {
                 if(this.playerStats.getWeapon() == null){
-                    System.out.println(this.name + "does not have a weapon.\n");
+                    System.out.println(TextColors.RED + this.name + "does not have a weapon.\n");
                     yield 0;
                 }
                 yield equippedWeapon.getStrength();
             }
             default -> {
-                System.err.println("Invalid Attack\n");
+                System.err.println(TextColors.RED + "Invalid Attack\n");
                 yield 0;
             }
         };
@@ -67,7 +69,7 @@ public class Player{
 
     private int handleUse(Usable item){
         if(!item.canUse()){
-            System.err.println(item.getName() + "is cooling! Available in " + item.getCooldownRemaining());
+            System.err.println(TextColors.GREEN + item.getName() + "is cooling! Available in " + item.getCooldownRemaining());
             return 0;
         }
         item.markUsed();

@@ -69,7 +69,7 @@ public interface Gameplay {
                     // Print the collected block, then pause
                     if (!block.isEmpty()) {
                         System.out.println(TextColors.PURPLE + block.toString().trim() + TextColors.RESET);
-                        System.out.print(TextColors.YELLOW + "\nPress Enter to continue..." + TextColors.RESET);
+                        System.out.print(TextColors.YELLOW + "\nPress [Enter] to continue or type SKIP..." + TextColors.RESET);
 
                         String i = userInput.nextLine().trim();
                         if(i.equals("skip")) return;

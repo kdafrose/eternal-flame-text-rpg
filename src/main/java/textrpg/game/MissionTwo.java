@@ -17,7 +17,7 @@ public class MissionTwo implements Mission,Gameplay{
     @Override 
     public boolean playMission(Scanner scanner){
         System.out.println("Has reached mission 2 congrats ig");
-        return true;
+        return false;
     }
 
     @Override

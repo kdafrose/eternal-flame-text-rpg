@@ -38,7 +38,7 @@ public class MissionOne implements Mission, Gameplay{
     @Override
     public boolean lootSpaceArea(Scanner input) {
         displayDirections();
-        System.out.println("go NORTH to exit");
+        System.out.println("go NORTH to exit\n");
         System.out.println(TextColors.YELLOW + "What do you want to do?\n" + TextColors.RESET);
 
         String userResponse = input.nextLine().toUpperCase(); // .toUpperCase() so "north" works too

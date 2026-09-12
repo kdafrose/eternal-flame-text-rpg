@@ -43,7 +43,7 @@ public class Game {
     }
 
     public void gameOverScreen(){
-        System.out.println(TextColors.BOLD + "You have failed to save the Kingdom.." + TextColors.RESET);
+        System.out.println(TextColors.BOLD + "\nYou have failed to save the Kingdom.." + TextColors.RESET);
     }
 
     public void endGame(){
@@ -52,7 +52,7 @@ public class Game {
 
     public void displayCombatVictory(){
         System.out.println(TextColors.YELLOW +
-        "\nt#####################################################\n" +
+        "\n#####################################################\n" +
         "#                  ENEMY DEFEATED!                  #\n" +
         "#####################################################" +
         TextColors.RESET);
@@ -63,6 +63,26 @@ public class Game {
         "\nThe enemy has dropped some loot — make sure to pick it up!" +
         "\n\nYou look around and sense there may be more to discover in the area." +
         TextColors.RESET);
+    }
+
+    public void displayPlayerInventory() {
+        Items[] inventory = this.player.getPlayersInventory().getInventory();
+        StringBuilder itemsString = new StringBuilder();
+        boolean hasItems = false;
+
+        for (Items i : inventory) {
+            if (i != null) {
+                itemsString.append(i.getName()).append("\n");
+                hasItems = true;
+            }
+        }
+
+        if (!hasItems) {
+            itemsString.append("***inventory is empty***");
+        }
+
+        System.out.println(TextColors.GREEN + "Inventory:\n" + itemsString);
+        System.out.println(TextColors.GREEN + "Gold: " + this.player.getMoney() + TextColors.RESET);
     }
 
     // public boolean playerDeadHandler(Scanner scanner) {
