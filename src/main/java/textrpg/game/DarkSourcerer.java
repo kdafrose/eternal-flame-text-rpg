@@ -1,6 +1,6 @@
 package textrpg.game;
 
-public class DarkSourcerer extends Enemy implements Combat{
+public class DarkSourcerer extends Enemy{
     public DarkSourcerer(String name){
         super(name, new Stats(55, new Power("Dusk Wave", 8, 2)));
     }
