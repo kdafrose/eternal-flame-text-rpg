@@ -59,3 +59,4 @@ Planning came first. Before writing a single line of code, the main game loop wa
 3. Run **`Main.java`** located at: 'eternal-flame/src/main/java/textrpg/game/Main.java'
 
 ## Demo
+https://github.com/user-attachments/assets/a80619f9-a4a4-477b-9fad-ae2dd649c9cc
